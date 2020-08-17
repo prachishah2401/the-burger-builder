@@ -32,6 +32,7 @@ class BurgerBuilder extends Component {
     }
 
     componentDidMount () {
+        console.log(this.props)
         axios.get('https://burger-builder-94376.firebaseio.com/ingredients.json')
             .then(response => {
                 this.setState({ingredients: response.data});
@@ -99,29 +100,30 @@ class BurgerBuilder extends Component {
 
     purchaseContinueHandler = () => {
        // alert('You continue');
-       this.setState({loading: true});
-       const order = {
-           ingredients: this.state.ingredients,
-           price: this.state.totalPrice,
-           customer: {
-               name: 'Prachi Shah',
-               address: {
-                   street: 'Church St',
-                   zipCode: '2150',
-                   country: 'Australia'
-               },
-               email: 'prachi@test.com'
-           },
-           deliveryMethod: 'fastest'
-       }
+    //    this.setState({loading: true});
+    //    const order = {
+    //        ingredients: this.state.ingredients,
+    //        price: this.state.totalPrice,
+    //        customer: {
+    //            name: 'Prachi Shah',
+    //            address: {
+    //                street: 'Church St',
+    //                zipCode: '2150',
+    //                country: 'Australia'
+    //            },
+    //            email: 'prachi@test.com'
+    //        },
+    //        deliveryMethod: 'fastest'
+    //    }
        
-       axios.post('/orders.json', order)
-        .then(response => {
-            this.setState({loading: false, purchasing: false});
-        })
-        .catch(error => {
-            this.setState({loading: false, purchasing: false});
-        });
+    //    axios.post('/orders.json', order)
+    //     .then(response => {
+    //         this.setState({loading: false, purchasing: false});
+    //     })
+    //     .catch(error => {
+    //         this.setState({loading: false, purchasing: false});
+    //     });
+        this.props.history.push('/checkout');
     }
 
     render() {
